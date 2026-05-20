@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import "aos/dist/aos.css";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,7 +29,37 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+
+      <head>
+
+        {/* AOS CSS */}
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+        />
+
+      </head>
+
+      <body className="min-h-full flex flex-col">
+
+        {children}
+
+        {/* AOS Script */}
+        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+        {/* AOS Initialize */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              AOS.init({
+                once: true,
+              });
+            `,
+          }}
+        />
+
+      </body>
+
     </html>
   );
 }
