@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import TopDoctors from "../components/TopDoctors";
 import WhyChooseUs from "../components/WhyChooseUs";
 import Testimonials from "../components/Testimonials";
+import Footer from "../components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <TopDoctors />
       <WhyChooseUs />
       <Testimonials />
+      <Footer/>
 
     </div>
   );

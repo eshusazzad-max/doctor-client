@@ -45,10 +45,11 @@ export default function RootLayout({
         {children}
 
         {/* AOS Script */}
-        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+       <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" async></script>
 
         {/* AOS Initialize */}
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               AOS.init({
