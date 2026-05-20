@@ -83,7 +83,7 @@ const WhyChooseUs = () => {
               </h3>
 
               {/* Description */}
-              <p className="text-[#223747] leading-8 mt-4">
+              <p className="text-[#223747] text-lg leading-8 mt-4">
                 {feature.description}
               </p>
 

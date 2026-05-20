@@ -12,7 +12,7 @@ import "swiper/css/pagination";
 
 const Hero = () => {
   return (
-    <div className="w-full h-[90vh]">
+    <div className="w-full h-[85vh] md:h-[90vh]">
 
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
@@ -26,7 +26,7 @@ const Hero = () => {
         {/* Slide 1 */}
         <SwiperSlide>
 
-          <div className="relative w-full h-[90vh]">
+          <div className="relative w-full h-[85vh] md:h-[90vh]">
 
             <Image
               src="/images/hero1.png"
@@ -41,31 +41,35 @@ const Hero = () => {
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-start">
 
-              <div className="w-full pl-20 md:pl-32 text-white">
+              <div className="w-full px-5 md:px-12 lg:pl-32 text-white">
 
-                <p className="border border-[#62b6cb] inline-block px-4 py-2 rounded-full mb-6 text-sm">
+                <p className="border border-[#62b6cb] inline-block px-4 py-2 rounded-full mb-5 text-xs md:text-sm">
                   VERIFIED HEALTHCARE
                 </p>
 
-                <h1 className="text-7xl font-[Elsie] leading-tight max-w-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-[Elsie] leading-tight max-w-2xl">
                   Your Health, <br />
                   Our Priority
                 </h1>
 
-                <p className="mt-6 text-xl max-w-2xl text-gray-200">
+                <p className="mt-5 text-base md:text-lg lg:text-xl max-w-xl md:max-w-2xl text-gray-200 leading-8">
                   Book appointments with trusted doctors
                   and get quality healthcare anytime.
                 </p>
 
                 {/* Buttons */}
-                <div className="flex items-center gap-5 mt-10">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
 
-                  <button className="bg-[#62b6cb] px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transition duration-300">
+                  <button className="bg-[#62b6cb] px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:scale-105 transition duration-300">
+
                     Book Appointment
+
                   </button>
 
-                  <button className="border border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#1b4965] hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+                  <button className="border border-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-white hover:text-[#1b4965] hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+
                     Browse Doctors
+
                   </button>
 
                 </div>
@@ -85,7 +89,7 @@ const Hero = () => {
         {/* Slide 2 */}
         <SwiperSlide>
 
-          <div className="relative w-full h-[90vh]">
+          <div className="relative w-full h-[85vh] md:h-[90vh]">
 
             <Image
               src="/images/hero2.png"
@@ -98,16 +102,20 @@ const Hero = () => {
 
             <div className="absolute inset-0 flex items-center justify-start">
 
-              <div className="w-full pl-20 md:pl-32 text-white">
+              <div className="w-full px-5 md:px-12 lg:pl-32 text-white">
 
-                <h1 className="text-7xl font-[Elsie] leading-tight max-w-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-[Elsie] leading-tight max-w-2xl">
+
                   Expert Doctors <br />
                   You Can Trust
+
                 </h1>
 
-                <p className="mt-6 text-xl max-w-2xl text-gray-200">
+                <p className="mt-5 text-base md:text-lg lg:text-xl max-w-xl md:max-w-2xl text-gray-200 leading-8">
+
                   Connect with experienced specialists
                   and receive world-class medical support.
+
                 </p>
 
               </div>
@@ -126,7 +134,7 @@ const Hero = () => {
         {/* Slide 3 */}
         <SwiperSlide>
 
-          <div className="relative w-full h-[90vh]">
+          <div className="relative w-full h-[85vh] md:h-[90vh]">
 
             <Image
               src="/images/hero3.png"
@@ -139,16 +147,20 @@ const Hero = () => {
 
             <div className="absolute inset-0 flex items-center justify-start">
 
-              <div className="w-full pl-20 md:pl-32 text-white">
+              <div className="w-full px-5 md:px-12 lg:pl-32 text-white">
 
-                <h1 className="text-7xl font-[Elsie] leading-tight max-w-2xl">
+                <h1 className="text-4xl md:text-6xl lg:text-7xl font-[Elsie] leading-tight max-w-2xl">
+
                   Modern Care <br />
                   For Every Patient
+
                 </h1>
 
-                <p className="mt-6 text-xl max-w-2xl text-gray-200">
+                <p className="mt-5 text-base md:text-lg lg:text-xl max-w-xl md:max-w-2xl text-gray-200 leading-8">
+
                   Experience seamless healthcare booking
                   with advanced medical technology.
+
                 </p>
 
               </div>

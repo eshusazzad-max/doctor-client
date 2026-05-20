@@ -9,7 +9,7 @@ const doctors = [
     description:
       "Highly experienced cardiologist specializing in heart diseases, preventive care, and patient-centered treatment.",
     experience: "10 years experience",
-    location: "Dhaka, Bangladesh",
+    location: "Dhanmondi, Dhaka",
     rating: "4.9",
     fee: "800",
   },
@@ -33,7 +33,7 @@ const doctors = [
     specialist: "Dentist",
     image: "/images/doctor3.png",
     description:
-      "Professional dentist focused on modern dental care, cosmetic treatments, and creating healthy, confident smiles for every patient.",
+      "Professional dentist focused on modern dental care, cosmetic treatments, and healthy confident smiles.",
     experience: "12 years experience",
     location: "Panthapath, Dhaka",
     rating: "4.7",
@@ -112,7 +112,7 @@ const TopDoctors = () => {
                 </p>
 
                 {/* Description */}
-                <p className="text-[#103753] text-[16px] leading-8 mt-5 font-medium">
+                <p className="text-[#103753] text-lg leading-8 mt-5 font-medium">
                   {doctor.description}
                 </p>
 
@@ -126,7 +126,7 @@ const TopDoctors = () => {
                     height={17}
                   />
 
-                  <p className="text-[#103753] text-sm font-medium">
+                  <p className="text-[#103753] text-[16px] font-medium">
                     {doctor.location}
                   </p>
 
@@ -142,7 +142,7 @@ const TopDoctors = () => {
                     height={17}
                   />
 
-                  <p className="text-[#103753] text-sm font-medium">
+                  <p className="text-[#103753] text-[16px] font-medium">
                     {doctor.experience}
                   </p>
 
@@ -154,7 +154,7 @@ const TopDoctors = () => {
                   {/* Fee */}
                   <div>
 
-                    <p className="text-[#103753] text-lg">
+                    <p className="text-[#103753] text-xl">
                       Consultation
                     </p>
 
