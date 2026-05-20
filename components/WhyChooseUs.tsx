@@ -36,14 +36,14 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="py-24 bg-[#9fbaca]">
+    <section className="py-16 md:py-24 bg-[#9fbaca]">
 
       <div className="max-w-7xl mx-auto px-5">
 
         {/* Heading */}
         <div className="text-center mb-16">
 
-          <h2 className="text-5xl font-bold text-[#1b4965]">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#1b4965]">
             Why Choose Us
           </h2>
 
@@ -62,11 +62,11 @@ const WhyChooseUs = () => {
               key={feature.id}
                data-aos="fade-up"
                data-aos-duration="1200"
-              className="bg-[#dbeaf3] rounded-[30px] p-8 shadow-[0_10px_35px_rgba(27,73,101,0.08)] hover:shadow-[0_18px_50px_rgba(27,73,101,0.15)] hover:-translate-y-1 transition-all ease-out duration-500 border border-[#7196ac]"
+              className="bg-[#dbeaf3] rounded-[30px] p-5 md:p-8 shadow-[0_10px_35px_rgba(27,73,101,0.08)] hover:shadow-[0_18px_50px_rgba(27,73,101,0.15)] hover:-translate-y-1 transition-all ease-out duration-500 border border-[#7196ac]"
             >
 
               {/* Icon */}
-              <div className="w-[80px] h-[80px] rounded-full bg-[#eef7fb] flex items-center justify-center">
+              <div className="w-[65px] h-[65px] md:w-[80px] md:h-[80px] rounded-full bg-[#eef7fb] flex items-center justify-center">
 
                 <Image
                   src={feature.icon}
@@ -78,7 +78,7 @@ const WhyChooseUs = () => {
               </div>
 
               {/* Title */}
-              <h3 className="text-2xl font-bold text-[#1b4965] mt-8">
+              <h3 className="text-xl md:text-2xl font-bold text-[#1b4965] mt-8">
                 {feature.title}
               </h3>
 
