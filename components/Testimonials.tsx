@@ -46,14 +46,14 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section className="py-24 bg-[#9fbaca]">
+    <section className="py-16 md:py-24 bg-[#9fbaca]">
 
       <div className="max-w-7xl mx-auto px-5">
 
         {/* Heading */}
         <div className="text-center mb-16">
 
-          <h2 className="text-5xl font-bold text-[#1b4965]">
+          <h2 className="text-3xl md:text-5xl font-bold text-[#1b4965]">
             What Patients Say
           </h2>
 
@@ -70,7 +70,7 @@ const Testimonials = () => {
 
             <div
               key={review.id}
-              className="bg-[#dbeaf3] rounded-[26px] p-7 border border-[#6e8ea1] shadow-[0_10px_35px_rgba(27,73,101,0.08)] hover:-translate-y-2 hover:shadow-[0_18px_50px_rgba(27,73,101,0.15)] transition-all ease-out duration-500"
+              className="bg-[#dbeaf3] rounded-[26px] p-5 md:p-7 border border-[#6e8ea1] shadow-[0_10px_35px_rgba(27,73,101,0.08)] hover:-translate-y-2 hover:shadow-[0_18px_50px_rgba(27,73,101,0.15)] transition-all ease-out duration-500"
             >
 
               {/* Stars */}
@@ -91,16 +91,18 @@ const Testimonials = () => {
               </div>
 
               {/* Review */}
-              <p className="text-[#162431] leading-8 mt-5 text-lg font-medium min-h-[100px]">
-                "{review.review}"
-              </p>
+              <p className="text-[#4f6577] leading-7 md:leading-8 mt-5 font-medium min-h-[100px]">
+
+               {review.review}
+
+               </p>
 
               {/* Name */}
               <div className="mt-6 flex items-center gap-3">
 
                 <div className="w-10 h-[2px] bg-[#62b6cb]"></div>
 
-                <p className="font-semibold text-[#1b4965]">
+                <p className="text-sm md:text-xl text-[#074161]">
                   {review.name}
                 </p>
 
