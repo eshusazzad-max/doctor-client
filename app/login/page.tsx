@@ -1,7 +1,7 @@
 "use client";
 
+import LoadingSpinner from "@/components/LoadingSpinner";
 import { useContext, useState } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
 
-  const { loginUser, googleLogin } = useContext(AuthContext);
+  const { loginUser, googleLogin, loading } = useContext(AuthContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
@@ -213,10 +213,16 @@ const LoginPage = () => {
 
             {/* Login Button */}
             <button
-              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500 cursor-pointer"
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#62b6cb] hover:bg-[#1b4965] transition-all duration-300 text-white py-4 rounded-full text-xl font-semibold cursor-pointer disabled:opacity-60"
             >
 
-              Login
+              {
+
+                loading ? "Logging In..." : "Login"
+
+              }
 
             </button>
 

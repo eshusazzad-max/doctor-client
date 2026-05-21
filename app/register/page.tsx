@@ -10,7 +10,7 @@ import { AuthContext } from "@/providers/AuthProvider";
 
 const RegisterPage = () => {
 
-  const { createUser, googleLogin } = useContext(AuthContext);
+  const { createUser, googleLogin, loading } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const handleGoogleLogin = () => {
@@ -224,11 +224,18 @@ const RegisterPage = () => {
 
             {/* Register Button */}
             <button
-              type="submit"
-              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500 cursor-pointer"
+             type="submit"
+             disabled={loading}
+             className="w-full bg-[#62b6cb] hover:bg-[#1b4965] transition-all duration-300 text-white py-4 rounded-full text-xl font-semibold cursor-pointer disabled:opacity-60"
             >
 
-              Register
+              {
+
+                loading
+                 ? "Creating Account..."
+                 : "Register"
+
+              }
 
             </button>
 
