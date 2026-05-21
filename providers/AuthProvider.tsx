@@ -16,6 +16,7 @@ import {
   signOut,
   onAuthStateChanged,
   User,
+  updateProfile,
 } from "firebase/auth";
 
 import app from "@/firebase/firebase.config";
@@ -42,11 +43,29 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Register
-  const createUser = (email: string, password: string) => {
+  const createUser = async (
+    email: string,
+    password: string,
+    name: string
+  ) => {
 
     setLoading(true);
 
-    return createUserWithEmailAndPassword(auth, email, password);
+    const result = await createUserWithEmailAndPassword(
+
+      auth,
+      email,
+      password
+
+    );
+
+    await updateProfile(result.user, {
+
+      displayName: name,
+
+    });
+
+    return result;
 
   };
 

@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import Image from "next/image";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -58,7 +60,11 @@ const Hero = () => {
                 </p>
 
                 {/* Buttons */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
+                <div
+                id="doctors"
+                className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-8">
+
+                  <Link href="/appointments">
 
                   <button className="bg-[#62b6cb] px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:scale-105 transition duration-300">
 
@@ -66,11 +72,16 @@ const Hero = () => {
 
                   </button>
 
+                  </Link>
+
+
+                  <a href="#doctors">
                   <button className="border border-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-white hover:text-[#1b4965] hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
 
                     Browse Doctors
 
                   </button>
+                  </a>
 
                 </div>
 

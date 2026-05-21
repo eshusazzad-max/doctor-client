@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const doctors = [
 
@@ -251,11 +252,15 @@ const doctor = doctors.find(
 
           </div>
 
-          <button className="mt-10 bg-[#62b6cb] text-white px-10 py-4 rounded-2xl text-lg font-semibold transition-all duration-500 cursor-pointer hover:bg-[#1b4965] hover:-translate-y-2 hover:scale-105 shadow-lg hover:shadow-2xl">
+          <Link href={`/appointment/${doctor.id}`}>
 
-            Book Appointment
+            <button className="mt-10 bg-[#62b6cb] text-white px-10 py-4 rounded-2xl text-lg font-semibold transition-all duration-500 cursor-pointer hover:bg-[#1b4965] hover:-translate-y-2 hover:scale-105 shadow-lg hover:shadow-2xl">
 
-          </button>
+               Book Appointment
+
+           </button>
+
+         </Link>
 
         </div>
 
