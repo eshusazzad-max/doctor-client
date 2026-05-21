@@ -1,6 +1,5 @@
 "use client";
 
-
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useContext } from "react";
@@ -172,7 +171,13 @@ const Navbar = () => {
           className="lg:hidden text-white text-3xl"
         >
 
-          ☰
+          <Image
+            src="/icons/menu.png"
+            alt="menu"
+            width={34}
+            height={34}
+            className="cursor-pointer"
+          />
 
         </button>
 
