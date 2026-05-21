@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const doctors = [
   {
@@ -176,11 +177,13 @@ const TopDoctors = () => {
                   </div>
 
                   {/* Button */}
+                  <Link href={`/doctors/${doctor.id}`}>
                   <button className="bg-[#62b6cb] hover:bg-[#1b4965] text-white text-sm font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all duration-300">
 
                     View Details
 
                   </button>
+                  </Link>
 
                 </div>
 
