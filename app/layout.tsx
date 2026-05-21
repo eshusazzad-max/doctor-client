@@ -1,3 +1,6 @@
+import AuthProvider from "../providers/AuthProvider";
+import { Toaster } from "react-hot-toast";
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -42,7 +45,12 @@ export default function RootLayout({
 
       <body className="min-h-full flex flex-col">
 
-        {children}
+         <AuthProvider>
+          <Toaster />
+
+          {children}
+
+         </AuthProvider>
 
         {/* AOS Script */}
        <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" async></script>

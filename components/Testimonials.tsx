@@ -91,7 +91,7 @@ const Testimonials = () => {
               </div>
 
               {/* Review */}
-              <p className="text-[#4f6577] leading-7 md:leading-8 mt-5 font-medium min-h-[100px]">
+              <p className="text-[#213a4e] text-sm md:text-xl leading-7 md:leading-8 mt-5 font-medium min-h-[100px]">
 
                {review.review}
 
@@ -102,7 +102,7 @@ const Testimonials = () => {
 
                 <div className="w-10 h-[2px] bg-[#62b6cb]"></div>
 
-                <p className="text-sm md:text-xl text-[#074161]">
+                <p className="text-sm md:text-2xl text-[#072f44]">
                   {review.name}
                 </p>
 

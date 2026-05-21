@@ -1,8 +1,70 @@
+"use client";
+import { useContext, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+import { AuthContext } from "@/providers/AuthProvider";
 
 const RegisterPage = () => {
+
+  const { createUser, googleLogin } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const handleGoogleLogin = () => {
+
+   googleLogin()
+
+     .then(() => {
+
+       toast.success("Google Register Successful ");
+       router.push("/");
+
+     })
+
+     .catch(() => {
+
+       toast.error("Google Register Failed");
+
+     });
+
+ };
+
+  const handleRegister = (e: React.FormEvent<HTMLFormElement>) => {
+
+    e.preventDefault();
+
+    const form = e.currentTarget;
+
+    const name = (form.elements.namedItem("name") as HTMLInputElement).value;
+
+    const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+
+    const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+
+    console.log(name, email, password);
+
+    createUser(email, password)
+
+      .then(() => {
+
+        toast.success("Register Successful");
+        router.push("/");
+
+      })
+
+      .catch(() => {
+
+        toast.error("Something went wrong");
+
+      });
+
+  };
+
   return (
+
     <div className="min-h-screen bg-[#9fbaca] flex items-center justify-center px-4 md:px-6 py-10 md:py-16">
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 bg-[#f2ffff] rounded-[30px] md:rounded-[40px] overflow-hidden shadow-[0_20px_60px_rgba(27,73,101,0.15)]">
@@ -15,7 +77,7 @@ const RegisterPage = () => {
             alt="register"
             fill
             priority
-            className="object-cover object-left"
+            className="object-cover object-center scale-110"
           />
 
           {/* Overlay */}
@@ -24,14 +86,14 @@ const RegisterPage = () => {
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-end pb-24 px-12">
 
-            <h1 className="text-8xl xl:text-6xl font-[Elsie] leading-tight text-[#103753]">
+            <h1 className="text-6xl xl:text-7xl font-[Elsie] leading-tight text-[#103753]">
 
               Join <br />
               With Us
 
             </h1>
 
-            <p className="mt-6 text-2xl leading-8 text-[#082c46] max-w-md font-medium">
+            <p className="mt-6 text-xl leading-8 text-[#082c46] max-w-md font-medium">
 
               Create your account and start booking appointments
               with trusted doctors anytime.
@@ -85,7 +147,10 @@ const RegisterPage = () => {
           </div>
 
           {/* Form */}
-          <form className="mt-10 space-y-6">
+          <form
+            onSubmit={handleRegister}
+            className="mt-10 space-y-6"
+          >
 
             {/* Name */}
             <div>
@@ -98,8 +163,9 @@ const RegisterPage = () => {
 
               <input
                 type="text"
+                name="name"
                 placeholder="Enter your full name"
-                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
               />
 
             </div>
@@ -115,8 +181,9 @@ const RegisterPage = () => {
 
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
-                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
               />
 
             </div>
@@ -131,16 +198,34 @@ const RegisterPage = () => {
               </label>
 
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
                 placeholder="Enter your password"
-                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
               />
+
+              <div className="flex items-center gap-2 mt-3">
+
+               <input
+                type="checkbox"
+                onChange={(e) => setShowPassword(e.target.checked)}
+                className="w-4 h-4 cursor-pointer"
+               />
+
+               <p className="text-sm text-[#153e57] font-medium">
+
+                 Show Password
+
+               </p>
+
+              </div>
 
             </div>
 
             {/* Register Button */}
             <button
-              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
+              type="submit"
+              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500 cursor-pointer"
             >
 
               Register
@@ -165,7 +250,8 @@ const RegisterPage = () => {
             {/* Google Button */}
             <button
               type="button"
-              className="w-full border border-[#beddf3] py-4 rounded-2xl flex items-center justify-center gap-3 text-[#1b4965] font-semibold hover:bg-[#bedaec] transition-all duration-300"
+              onClick={handleGoogleLogin}
+              className="w-full border border-[#beddf3] py-4 rounded-2xl flex items-center justify-center gap-3 text-[#1b4965] font-semibold hover:bg-[#bedaec] transition-all duration-300 cursor-pointer"
             >
 
               <Image
@@ -202,7 +288,9 @@ const RegisterPage = () => {
       </div>
 
     </div>
+
   );
+
 };
 
 export default RegisterPage;

@@ -1,12 +1,33 @@
 "use client";
 
+
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "@/providers/AuthProvider";
 
 const Navbar = () => {
+  const { user, logoutUser } = useContext(AuthContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+
+   logoutUser()
+
+     .then(() => {
+
+       alert("Logout Successful");
+
+     })
+
+     .catch(() => {
+
+       alert("Logout Failed ");
+
+     });
+
+ };
 
   return (
     <nav className="bg-[#1f363d] px-5 md:px-8 py-4 shadow-md font-[Elsie] relative z-50">
@@ -78,31 +99,68 @@ const Navbar = () => {
           {/* Buttons */}
           <div className="flex items-center gap-5">
 
-            {/* Login */}
-            <button className="relative group px-5 py-2 text-white font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:text-[#bee9e8] cursor-pointer">
+           {
 
-              <span className="relative z-10">
+             user ? (
 
-                Login
+               <button
+                 onClick={handleLogout}
+                 className="relative group px-5 py-2 text-white font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:text-[#bee9e8] cursor-pointer"
+               >
 
-              </span>
+                 <span className="relative z-10">
 
-              <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[#62b6cb] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                   Logout
 
-            </button>
+                 </span>
 
-            {/* Register */}
-            <button className="relative group px-5 py-2 text-white font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:text-[#bee9e8] cursor-pointer">
+                 <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[#62b6cb] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
 
-              <span className="relative z-10">
+               </button>
 
-                Register
+              ) : (
 
-              </span>
+               <>
 
-              <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[#62b6cb] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                 {/* Login Button */}
+                <button className="relative group px-5 py-2 text-white font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:text-[#bee9e8] cursor-pointer">
 
-            </button>
+                   <span className="relative z-10">
+
+                     <Link href="/login">
+
+                      Login
+
+                     </Link>
+
+                   </span>
+
+                   <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[#62b6cb] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+
+                </button>
+
+                 {/* Register Button */}
+                <button className="relative group px-5 py-2 text-white font-semibold overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:text-[#bee9e8] cursor-pointer">
+
+                 <span className="relative z-10">
+
+                    <Link href="/register">
+
+                      Register
+
+                    </Link>
+
+                 </span>
+
+                 <span className="absolute left-0 bottom-0 h-[2px] w-full bg-[#62b6cb] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+
+                </button>
+
+              </>
+
+             )
+
+           }
 
           </div>
 

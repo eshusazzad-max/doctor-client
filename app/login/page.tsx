@@ -1,7 +1,64 @@
+"use client";
+
+import { useContext, useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+import { AuthContext } from "@/providers/AuthProvider";
 
 const LoginPage = () => {
+
+  const { loginUser, googleLogin } = useContext(AuthContext);
+
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const handleGoogleLogin = () => {
+
+   googleLogin()
+
+     .then(() => {
+
+       toast.success("Google Login Successful ");
+       router.push("/");
+
+     })
+
+     .catch(() => {
+
+       toast.error("Google Login Failed ");
+
+     });
+
+ };
+   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+
+  e.preventDefault();
+
+  const form = e.currentTarget;
+
+  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+
+  const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+
+  loginUser(email, password)
+
+    .then(() => {
+
+      toast.success("Login Successful");
+      router.push("/");
+
+    })
+
+    .catch(() => {
+
+      toast.error("Invalid Email or Password");
+
+    });
+
+};
   return (
     <div className="min-h-screen bg-[#9fbaca] flex items-center justify-center px-4 md:px-6 py-10 md:py-16">
 
@@ -85,7 +142,8 @@ const LoginPage = () => {
           </div>
 
           {/* Form */}
-          <form className="mt-10 space-y-6">
+          <form  onSubmit={handleLogin}
+           className="mt-10 space-y-6">
 
             {/* Email */}
             <div>
@@ -98,6 +156,7 @@ const LoginPage = () => {
 
               <input
                 type="email"
+                name="email"
                 placeholder="Enter your email"
                 className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
               />
@@ -114,10 +173,27 @@ const LoginPage = () => {
               </label>
 
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
                 placeholder="Enter your password"
                 className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
               />
+
+              <div className="flex items-center gap-2 mt-3">
+
+               <input
+                type="checkbox"
+                onChange={(e) => setShowPassword(e.target.checked)}
+                className="w-4 h-4 cursor-pointer"
+               />
+
+               <p className="text-sm text-[#153e57] font-medium">
+
+                 Show Password
+
+               </p>
+
+              </div>
 
             </div>
 
@@ -162,6 +238,7 @@ const LoginPage = () => {
             {/* Google Button */}
             <button
               type="button"
+              onClick={handleGoogleLogin}
               className="w-full border border-[#beddf3] py-4 rounded-2xl flex items-center justify-center gap-3 text-[#1b4965] font-semibold hover:bg-[#bedaec] transition-all duration-300 cursor-pointer"
             >
 
