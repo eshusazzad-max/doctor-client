@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const LoginPage = () => {
+const RegisterPage = () => {
   return (
     <div className="min-h-screen bg-[#9fbaca] flex items-center justify-center px-4 md:px-6 py-10 md:py-16">
 
@@ -11,30 +11,30 @@ const LoginPage = () => {
         <div className="relative hidden lg:block min-h-[750px]">
 
           <Image
-            src="/icons/login.png"
-            alt="login"
+            src="/icons/register.png"
+            alt="register"
             fill
-            className="object-cover object-left"
             priority
+            className="object-cover object-left"
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-[#1b4965]/10"></div>
+          <div className="absolute inset-0 bg-white/5"></div>
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col justify-end px-12 pb-16 text-[#103753]">
+          <div className="absolute inset-0 flex flex-col justify-end pb-24 px-12">
 
-            <h1 className="text-8xl xl:text-6xl font-[Elsie] leading-tight">
+            <h1 className="text-8xl xl:text-6xl font-[Elsie] leading-tight text-[#103753]">
 
-              Welcome <br />
-              Back
+              Join <br />
+              With Us
 
             </h1>
 
-            <p className="mt-6 text-2xl leading-8 text-[#082c46] max-w-md">
+            <p className="mt-6 text-2xl leading-8 text-[#082c46] max-w-md font-medium">
 
-              Access your appointments, manage bookings,
-              and connect with trusted doctors easily.
+              Create your account and start booking appointments
+              with trusted doctors anytime.
 
             </p>
 
@@ -46,7 +46,7 @@ const LoginPage = () => {
         <div className="px-6 md:px-10 lg:px-14 py-12 md:py-16 flex flex-col justify-center">
 
           {/* Logo */}
-          <div className="flex items-center  mb-10 justify-center lg:justify-start">
+          <div className="flex items-center mb-10 justify-center lg:justify-start">
 
             <div className="relative w-[60px] h-[60px]">
 
@@ -72,13 +72,13 @@ const LoginPage = () => {
 
             <h2 className="text-4xl md:text-5xl font-bold text-[#1b4965]">
 
-              Login Account
+              Create Account
 
             </h2>
 
             <p className="text-[#2e4355] mt-4 leading-7 md:text-lg">
 
-              Enter your email and password to access your account.
+              Enter your information to create your account.
 
             </p>
 
@@ -86,6 +86,23 @@ const LoginPage = () => {
 
           {/* Form */}
           <form className="mt-10 space-y-6">
+
+            {/* Name */}
+            <div>
+
+              <label className="text-[#1b4965] font-semibold">
+
+                Full Name
+
+              </label>
+
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
+              />
+
+            </div>
 
             {/* Email */}
             <div>
@@ -99,7 +116,7 @@ const LoginPage = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
               />
 
             </div>
@@ -116,31 +133,17 @@ const LoginPage = () => {
               <input
                 type="password"
                 placeholder="Enter your password"
-                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55] cursor-pointer"
+                className="w-full mt-3 px-5 py-4 rounded-2xl border border-[#d7e6ef] outline-none focus:border-[#62b6cb] focus:ring-4 focus:ring-[#62b6cb]/20 text-[#153c55]"
               />
 
             </div>
 
-            {/* Forgot Password */}
-            <div className="flex justify-end">
-
-              <Link
-                href="/"
-                className="text-[#62b6cb] font-semibold hover:underline"
-              >
-
-                Forgot Password?
-
-              </Link>
-
-            </div>
-
-            {/* Login Button */}
+            {/* Register Button */}
             <button
-              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500 cursor-pointer"
+              className="w-full bg-[#62b6cb] text-white py-4 rounded-2xl text-lg font-semibold hover:-translate-y-1 hover:shadow-xl transition-all duration-500"
             >
 
-              Login
+              Register
 
             </button>
 
@@ -155,14 +158,14 @@ const LoginPage = () => {
 
               </p>
 
-              <div className="flex-1 h-[1px] bg-[#d8e6ee]"></div>
+              <div className="flex-1 h-[1px] bg-[#d7e6ef]"></div>
 
             </div>
 
             {/* Google Button */}
             <button
               type="button"
-              className="w-full border border-[#beddf3] py-4 rounded-2xl flex items-center justify-center gap-3 text-[#1b4965] font-semibold hover:bg-[#bedaec] transition-all duration-300 cursor-pointer"
+              className="w-full border border-[#beddf3] py-4 rounded-2xl flex items-center justify-center gap-3 text-[#1b4965] font-semibold hover:bg-[#bedaec] transition-all duration-300"
             >
 
               <Image
@@ -181,14 +184,14 @@ const LoginPage = () => {
           {/* Bottom Text */}
           <p className="text-[#364a5a] mt-8 text-center">
 
-            Don’t have an account?{" "}
+            Already have an account?{" "}
 
             <Link
-              href="/register"
+              href="/login"
               className="text-[#62b6cb] font-semibold hover:underline"
             >
 
-              Register
+              Login
 
             </Link>
 
@@ -202,4 +205,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
