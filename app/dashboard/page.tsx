@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  User,
   updateProfile,
 } from "firebase/auth";
 
@@ -12,6 +11,8 @@ import { useContext } from "react";
 import { AuthContext } from "@/providers/AuthProvider";
 
 import { useEffect, useState } from "react";
+
+import PrivateRoute from "@/components/PrivateRoute";
 
 import Image from "next/image";
 
@@ -43,31 +44,35 @@ const DashboardPage = () => {
     user?.displayName || ""
   );
 
-  const [updatedPhoto, setUpdatedPhoto] = useState(
-    user?.photoURL || ""
-  );
 
   // Delete Appointment
-  const handleDelete = (indexToDelete: number) => {
+  const handleDelete = async (id: string) => {
 
-    const updatedAppointments = appointments.filter(
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,
+    {
 
-      (_, index) => index !== indexToDelete
+      method: "DELETE",
 
-    );
+    }
+  );
 
-    setAppointments(updatedAppointments);
+  const data = await response.json();
+
+  if (data.deletedCount > 0) {
+
+    const remainingAppointments =
+      appointments.filter(
+        (appointment) => appointment._id !== id
+      );
+
+    setAppointments(remainingAppointments);
+
     toast.success("Appointment Deleted");
 
-    localStorage.setItem(
+   }
 
-      "appointments",
-
-      JSON.stringify(updatedAppointments)
-
-    );
-
-  };
+ };
 
   // Open Appointment Update Modal
   const handleUpdate = (indexToUpdate: number) => {
@@ -87,42 +92,64 @@ const DashboardPage = () => {
   };
 
   // Save Appointment Update
-  const handleSaveUpdate = () => {
+  const handleSaveUpdate = async () => {
 
-    if (editingIndex === null) return;
+  if (editingIndex === null) return;
 
-    const updatedAppointments = [...appointments];
+  const updatedAppointment = {
 
-    updatedAppointments[editingIndex].patientName =
-      updatedName;
+    patientName: updatedName,
 
-    updatedAppointments[editingIndex].phone =
-      updatedPhone;
+    phone: updatedPhone,
 
-    updatedAppointments[editingIndex].date =
-      updatedDate;
+    date: updatedDate,
 
-    updatedAppointments[editingIndex].time =
-      updatedTime;
+    time: updatedTime,
 
-    updatedAppointments[editingIndex].problem =
-      updatedProblem;
-
-    setAppointments(updatedAppointments);
-
-    localStorage.setItem(
-
-      "appointments",
-
-      JSON.stringify(updatedAppointments)
-
-    );
-
-    setEditingIndex(null);
-    toast.success("Appointment Updated Successfully");
+    problem: updatedProblem,
 
   };
 
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${appointments[editingIndex]._id}`,
+    {
+
+      method: "PUT",
+
+      headers: {
+
+        "content-type": "application/json",
+
+      },
+
+      body: JSON.stringify(updatedAppointment),
+
+    }
+  );
+
+  const data = await response.json();
+
+  if (data.modifiedCount > 0) {
+
+    const updatedAppointments = [...appointments];
+
+    updatedAppointments[editingIndex] = {
+
+      ...updatedAppointments[editingIndex],
+
+      ...updatedAppointment,
+
+    };
+
+    setAppointments(updatedAppointments);
+
+    toast.success("Appointment Updated Successfully");
+
+    setEditingIndex(null);
+
+  }
+
+ };
   // Update Profile
   const handleProfileUpdate = async () => {
 
@@ -145,17 +172,20 @@ const DashboardPage = () => {
   // Load Appointments
   useEffect(() => {
 
-    const savedAppointments = JSON.parse(
+  fetch("${process.env.NEXT_PUBLIC_API_URL}/appointments")
 
-      localStorage.getItem("appointments") || "[]"
+    .then((res) => res.json())
 
-    );
+    .then((data) => {
 
-    setAppointments(savedAppointments);
+      setAppointments(data);
 
-  }, []);
+    });
 
+}, []);
   return (
+
+    <PrivateRoute>
 
     <div className="min-h-screen bg-[#9fbaca] px-4 md:px-8 py-16">
 
@@ -318,7 +348,7 @@ const DashboardPage = () => {
 
                         {/* Delete */}
                         <button
-                          onClick={() => handleDelete(index)}
+                          onClick={() => handleDelete(appointment._id)}
                           className="bg-red-500 text-white px-5 py-2 rounded-full font-medium hover:bg-red-600 transition-all duration-300 cursor-pointer flex items-center gap-2"
                         >
 
@@ -579,6 +609,8 @@ const DashboardPage = () => {
       }
 
     </div>
+
+ </PrivateRoute>
 
   );
 

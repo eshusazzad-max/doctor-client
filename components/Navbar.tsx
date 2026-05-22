@@ -1,32 +1,48 @@
 "use client";
 
 import Link from "next/link";
+
 import Image from "next/image";
+
 import { useState, useContext } from "react";
+
+import { useRouter } from "next/navigation";
+
+import toast from "react-hot-toast";
+
 import { AuthContext } from "@/providers/AuthProvider";
 
 const Navbar = () => {
-  const { user, logoutUser } = useContext(AuthContext);
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { user, logoutUser } =
+    useContext(AuthContext);
+
+  const router = useRouter();
+
+  const [menuOpen, setMenuOpen] =
+    useState(false);
 
   const handleLogout = () => {
 
-   logoutUser()
+    logoutUser()
 
-     .then(() => {
+      .then(() => {
 
-       alert("Logout Successful");
+        localStorage.removeItem("token");
 
-     })
+        toast.success("Logout Successful");
 
-     .catch(() => {
+        router.push("/");
 
-       alert("Logout Failed ");
+      })
 
-     });
+      .catch(() => {
 
- };
+        toast.error("Logout Failed");
+
+      });
+
+  };
 
   return (
     <nav className="bg-[#1f363d] px-5 md:px-8 py-4 shadow-md font-[Elsie] relative z-50">

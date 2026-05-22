@@ -4,11 +4,13 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
+import PrivateRoute from "@/components/PrivateRoute";
+
 const AppointmentPage = () => {
 
  const router = useRouter();
 
- const handleAppointment = (e: React.FormEvent<HTMLFormElement>) => {
+ const handleAppointment = async (e: React.FormEvent<HTMLFormElement>) => {
 
   e.preventDefault();
 
@@ -55,21 +57,26 @@ const AppointmentPage = () => {
 
   };
 
-  const oldAppointments = JSON.parse(
+ const response = await fetch(
+  "${process.env.NEXT_PUBLIC_API_URL}/appointments",
+  {
 
-    localStorage.getItem("appointments") || "[]"
+    method: "POST",
 
-  );
+    headers: {
 
-  oldAppointments.push(appointmentData);
+      "content-type": "application/json",
 
-  localStorage.setItem(
+    },
 
-    "appointments",
+    body: JSON.stringify(appointmentData),
 
-    JSON.stringify(oldAppointments)
+  }
+);
 
-  );
+const data = await response.json();
+
+console.log(data);
 
   toast.success("Appointment Booked Successfully");
 
@@ -78,6 +85,8 @@ const AppointmentPage = () => {
 };
 
   return (
+
+    <PrivateRoute>
 
     <div className="min-h-screen bg-[#9fbaca] px-4 md:px-8 py-16">
 
@@ -304,6 +313,7 @@ const AppointmentPage = () => {
       </div>
 
     </div>
+   </PrivateRoute>
 
   );
 

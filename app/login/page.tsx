@@ -12,9 +12,15 @@ import { AuthContext } from "@/providers/AuthProvider";
 const LoginPage = () => {
 
   const { loginUser, googleLogin, loading } = useContext(AuthContext);
-
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+   if (loading) {
+
+  return <LoadingSpinner />;
+
+ }
+
   const handleGoogleLogin = () => {
 
    googleLogin()
@@ -33,32 +39,66 @@ const LoginPage = () => {
      });
 
  };
-   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+   
+const handleLogin = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
 
   e.preventDefault();
 
   const form = e.currentTarget;
 
-  const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+  const email =
+    (form.elements.namedItem("email") as HTMLInputElement)
+      .value;
 
-  const password = (form.elements.namedItem("password") as HTMLInputElement).value;
+  const password =
+    (form.elements.namedItem("password") as HTMLInputElement)
+      .value;
 
-  loginUser(email, password)
+  try {
 
-    .then(() => {
+    await loginUser(email, password);
 
-      toast.success("Login Successful");
-      router.push("/");
+    const currentUser = {
 
-    })
+      email,
 
-    .catch(() => {
+    };
 
-      toast.error("Invalid Email or Password");
+    const response = await fetch(
+      "${process.env.NEXT_PUBLIC_API_URL}/jwt",
+      {
 
-    });
+        method: "POST",
+
+        headers: {
+
+          "content-type": "application/json",
+
+        },
+
+        body: JSON.stringify(currentUser),
+
+      }
+    );
+
+    const data = await response.json();
+
+    localStorage.setItem("token", data.token);
+
+    toast.success("Login Successful");
+
+    router.push("/");
+
+  } catch {
+
+    toast.error("Invalid Email or Password");
+
+  }
 
 };
+
   return (
     <div className="min-h-screen bg-[#9fbaca] flex items-center justify-center px-4 md:px-6 py-10 md:py-16">
 
