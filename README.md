@@ -18,6 +18,10 @@ https://github.com/eshusazzad-max/doctor-client
 
 https://github.com/eshusazzad-max/doctor-server
 
+### Server Live Link
+
+https://doctor-server-uci1.onrender.com
+
 ---
 
 ## Features
