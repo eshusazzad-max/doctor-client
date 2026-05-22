@@ -7,6 +7,10 @@ import toast from "react-hot-toast";
 
 import { AuthContext } from "@/providers/AuthProvider";
 
+export const metadata = {
+  title: "DocTime | Register",
+};
+
 const RegisterPage = () => {
 
   const { createUser, googleLogin, loading } = useContext(AuthContext);

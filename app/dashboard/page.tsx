@@ -17,6 +17,10 @@ import PrivateRoute from "@/components/PrivateRoute";
 
 import Image from "next/image";
 
+export const metadata = {
+  title: "DocTime | Dashboard",
+};
+
 const DashboardPage = () => {
 
   const [appointments, setAppointments] = useState<any[]>([]);

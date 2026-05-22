@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DocTime – Doctor Appointment Booking System
 
-## Getting Started
+DocTime is a modern full-stack doctor appointment booking platform where users can register, log in, book appointments, manage bookings, and explore doctors easily.
 
-First, run the development server:
+---
+
+## Live Links
+
+###  Live Website
+
+https://doctor-client-ten.vercel.app
+
+### Client Repository
+
+https://github.com/eshusazzad-max/doctor-client
+
+### Server Repository
+
+https://github.com/eshusazzad-max/doctor-server
+
+---
+
+## Features
+
+*  Firebase Authentication
+*  JWT Protected Routes
+*  Doctor Appointment Booking
+*  User Dashboard
+*  Update Appointment
+*  Delete Appointment
+*  Search Doctors by Name & Specialist
+*  Fully Responsive Design
+*  Beautiful Modern UI
+*  Live Deployment with Vercel & Render
+
+---
+
+## Technologies Used
+
+### Frontend
+
+* Next.js
+* TypeScript
+* Tailwind CSS
+* Firebase Authentication
+* React Hot Toast
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT
+
+---
+
+## Installation & Setup
+
+### Clone Client Repository
+
+```bash
+git clone your-client-repo-link
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run Client
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Clone Server Repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+git clone your-server-repo-link
+```
 
-## Learn More
+### Install Dependencies
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run Server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+node index.js
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Client
+
+```env
+NEXT_PUBLIC_API_URL=your-server-url
+```
+
+### Server
+
+```env
+DB_USER=your_mongodb_username
+DB_PASS=your_mongodb_password
+JWT_SECRET=your_secret_key
+```
+
+---
+
+## Developed By
+
+### Sinthia Akter Esha
+
+Full Stack Web Developer
