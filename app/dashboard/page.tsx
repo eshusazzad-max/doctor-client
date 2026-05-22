@@ -4,6 +4,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
+
 import toast from "react-hot-toast";
 
 import { useContext } from "react";
@@ -172,7 +173,9 @@ const DashboardPage = () => {
   // Load Appointments
   useEffect(() => {
 
-  fetch("${process.env.NEXT_PUBLIC_API_URL}/appointments")
+  fetch(
+  `${process.env.NEXT_PUBLIC_API_URL}/appointments?email=${user?.email}`
+)
 
     .then((res) => res.json())
 

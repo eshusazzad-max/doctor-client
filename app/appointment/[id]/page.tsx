@@ -4,11 +4,19 @@ import toast from "react-hot-toast";
 
 import { useRouter } from "next/navigation";
 
+import { useContext } from "react";
+
+import { AuthContext }
+  from "@/providers/AuthProvider";
+
 import PrivateRoute from "@/components/PrivateRoute";
 
 const AppointmentPage = () => {
 
  const router = useRouter();
+
+ const { user } =
+  useContext(AuthContext);
 
  const handleAppointment = async (e: React.FormEvent<HTMLFormElement>) => {
 
@@ -39,6 +47,8 @@ const AppointmentPage = () => {
 
   const appointmentData = {
 
+    userEmail: user?.email,
+
     doctor,
 
     patientName,
@@ -58,7 +68,7 @@ const AppointmentPage = () => {
   };
 
  const response = await fetch(
-  "${process.env.NEXT_PUBLIC_API_URL}/appointments",
+  `${process.env.NEXT_PUBLIC_API_URL}/appointments`,
   {
 
     method: "POST",

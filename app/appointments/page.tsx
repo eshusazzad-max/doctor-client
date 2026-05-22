@@ -54,7 +54,15 @@ const AllAppointmentsPage = () => {
 
   const filteredDoctors = doctors.filter((doctor) => {
 
-  const matchesSearch = doctor.name
+  const matchesSearch =
+
+  doctor.name
+    .toLowerCase()
+    .includes(search.toLowerCase())
+
+  ||
+
+  doctor.specialist
     .toLowerCase()
     .includes(search.toLowerCase());
 

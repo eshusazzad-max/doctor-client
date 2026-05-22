@@ -67,7 +67,7 @@ const handleLogin = async (
     };
 
     const response = await fetch(
-      "${process.env.NEXT_PUBLIC_API_URL}/jwt",
+      `${process.env.NEXT_PUBLIC_API_URL}/jwt`,
       {
 
         method: "POST",
@@ -91,7 +91,9 @@ const handleLogin = async (
 
     router.push("/");
 
-  } catch {
+  } catch (error) {
+
+      console.log(error);
 
     toast.error("Invalid Email or Password");
 
